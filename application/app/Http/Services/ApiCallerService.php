@@ -6,7 +6,12 @@ use Illuminate\Support\Facades\Http;
 
 class ApiCallerService
 {
-    protected function callApi($url, $params)
+    /**
+     * Call api by url with url params
+     *
+     * @return Response::json
+     */
+    protected function callApi(string $url, array $params)
     {
         $response = Http::get(config('services.api_access.url') . $url, $params + [
                 'key' =>  config('services.api_access.key')
