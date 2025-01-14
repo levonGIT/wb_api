@@ -2,12 +2,26 @@
 
 namespace App\Http\Services;
 
+use App\Models\Income;
+
 class IncomeService extends ApiCallerService
 {
     static string $url = 'incomes';
 
-    public function getRecords()
+    public function getRecords($params)
     {
-        dd($this->callApi(self::$url));
+        $resp = $this->callApi(self::$url, $params);
+        $records = $resp['data'];
+        $this->saveRecords($records);
+
+        if($resp['links']['next']){
+            $params['page']++;
+            $this->getRecords($params);
+        }
+    }
+
+    private function saveRecords($records)
+    {
+        Income::insert($records);
     }
 }

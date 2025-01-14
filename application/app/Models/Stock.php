@@ -11,4 +11,7 @@ class Stock extends Model
 
     protected $table = 'Stocks';
 
+    public $timestamps = false;
+
+    protected $guarded = [];
 }

@@ -11,4 +11,7 @@ class Sale extends Model
 
     protected $table = 'Sales';
 
+    public $timestamps = false;
+
+    protected $guarded = [];
 }

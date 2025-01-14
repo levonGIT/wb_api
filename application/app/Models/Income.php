@@ -11,4 +11,7 @@ class Income extends Model
 
     protected $table = 'Incomes';
 
+    public $timestamps = false;
+
+    protected $guarded = [];
 }
