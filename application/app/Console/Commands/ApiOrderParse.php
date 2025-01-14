@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Services\IncomeService;
-use Carbon\Carbon;
+use App\Http\Services\OrderService;
 use Illuminate\Console\Command;
 
-class ApiIncomeParse extends Command
+class ApiOrderParse extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'api:incomes {dateFrom?} {dateTo?} {limit?} {page?}';
+    protected $signature = 'api:orders {dateFrom?} {dateTo?} {limit?} {page?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Parse incomes from api';
+    protected $description = 'Parse orders from api';
 
     /**
      * Execute the console command.
@@ -38,6 +37,6 @@ class ApiIncomeParse extends Command
             'page' => $args['page'] ?? 1,
         ];
 
-        (new IncomeService)->getRecords($params);
+        (new OrderService)->getRecords($params);
     }
 }

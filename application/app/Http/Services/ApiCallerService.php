@@ -9,6 +9,8 @@ class ApiCallerService
     /**
      * Call api by url with url params
      *
+     * @param string $url
+     * @param array $params
      * @return Response::json
      */
     protected function callApi(string $url, array $params)

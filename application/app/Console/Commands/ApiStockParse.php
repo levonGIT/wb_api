@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Services\IncomeService;
-use Carbon\Carbon;
+use App\Http\Services\StockService;
 use Illuminate\Console\Command;
 
-class ApiIncomeParse extends Command
+class ApiStockParse extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'api:incomes {dateFrom?} {dateTo?} {limit?} {page?}';
+    protected $signature = 'api:stocks {dateFrom?} {limit?} {page?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Parse incomes from api';
+    protected $description = 'Parse stocks from api';
 
     /**
      * Execute the console command.
@@ -32,12 +31,11 @@ class ApiIncomeParse extends Command
         $args = $this->arguments();
 
         $params = [
-            'dateFrom' => $args['dateFrom'] ?? '1999-01-01',
-            'dateTo' => $args['dateTo'] ?? now()->format('Y-m-d'),
+            'dateFrom' => $args['dateFrom'],
             'limit' => $args['limit'] ?? 500,
             'page' => $args['page'] ?? 1,
         ];
 
-        (new IncomeService)->getRecords($params);
+        (new StockService)->getRecords($params);
     }
 }
