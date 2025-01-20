@@ -14,4 +14,9 @@ class Order extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+    public function account()
+    {
+        return $this->hasOne(Account::class);
+    }
 }

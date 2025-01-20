@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Income extends Model
+class Company extends Model
 {
     use HasFactory;
 
-    protected $table = 'Incomes';
+    protected $table = 'Companies';
 
     public $timestamps = false;
 
-    protected $guarded = [];
-
-    public function account()
+    public function accounts()
     {
-        return $this->hasOne(Account::class);
+        return $this->hasMany(Account::class);
     }
 }

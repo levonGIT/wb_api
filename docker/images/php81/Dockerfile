@@ -60,4 +60,4 @@ RUN chown -R www-data:www-data /app
 
 COPY ./start.sh /
 RUN chmod +x /start.sh
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["bash","/start.sh"]

@@ -2,6 +2,7 @@ version: '3.5'
 
 services:
     app:
+        container_name: app
         build: ./docker/images/php81
         volumes:
             - ./application:/app
@@ -9,9 +10,18 @@ services:
             - "6969:8000"
         networks:
             - cluster
+    db:
+        image: mysql:8.0
+        restart: always
+        volumes:
+            -   ./database:/app
+        env_file:
+            -   database/mysql.env
+        ports:
+            - '3307:3307'
 networks:
     cluster:
         name: cluster
-        external: true
+        external: false
         driver: bridge
 
